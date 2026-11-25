@@ -1,0 +1,131 @@
+.tableWrap {
+  overflow-x: auto;
+  overflow-y: auto;
+  flex: 1;
+  min-height: 0;
+}
+
+.table {
+  border-collapse: collapse;
+  font-family: var(--font-mono);
+  font-size: 10px;
+  white-space: nowrap;
+  width: max-content;
+  min-width: 100%;
+}
+
+.table thead th {
+  position: sticky;
+  top: 0;
+  background: var(--bg3);
+  z-index: 2;
+  padding: 3px 4px;
+  text-align: center;
+  font-size: 9px;
+  color: var(--text3);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  border-bottom: 1px solid var(--border);
+}
+
+.driverHead {
+  position: sticky !important;
+  left: 0 !important;
+  z-index: 3 !important;
+  text-align: left !important;
+  min-width: 58px;
+}
+
+.lapHead {
+  min-width: 50px;
+}
+
+.table tbody tr {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+}
+
+.table tbody tr:hover {
+  background: rgba(255, 255, 255, 0.03);
+}
+
+.driverCell {
+  position: sticky;
+  left: 0;
+  background: var(--bg2);
+  z-index: 1;
+  padding: 3px 6px 3px 4px;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  min-width: 58px;
+  border-right: 1px solid var(--border);
+}
+
+/* sticky column needs explicit background on hover state */
+.table tbody tr:hover .driverCell {
+  background: #1e2020;
+}
+
+.teamBar {
+  width: 3px;
+  height: 14px;
+  border-radius: 2px;
+  flex-shrink: 0;
+}
+
+.abbr {
+  font-weight: 700;
+  font-size: 10px;
+  color: var(--text);
+}
+
+.cell {
+  padding: 3px 4px;
+  text-align: center;
+  color: var(--text2);
+}
+
+.empty {
+  color: var(--text3);
+  opacity: 0.5;
+}
+
+/* Session best — purple */
+.purple {
+  background: rgba(150, 0, 255, 0.2) !important;
+  color: #c084fc !important;
+  font-weight: 700;
+}
+
+/* Personal best — green */
+.green {
+  background: rgba(0, 175, 60, 0.18) !important;
+  color: #4ade80 !important;
+  font-weight: 600;
+}
+
+/* Legend */
+.legend {
+  display: flex;
+  gap: 8px;
+}
+
+.legendPurple,
+.legendGreen {
+  font-size: 9px;
+  font-family: var(--font-mono);
+  padding: 1px 5px;
+  border-radius: 3px;
+  font-weight: 600;
+}
+
+.legendPurple {
+  background: rgba(150, 0, 255, 0.2);
+  color: #c084fc;
+}
+
+.legendGreen {
+  background: rgba(0, 175, 60, 0.18);
+  color: #4ade80;
+}

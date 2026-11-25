@@ -1,0 +1,137 @@
+/* ── Panel root ────────────────────────────────────────────────────────────── */
+.root {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  overflow: hidden;
+}
+
+/* ── Driver row ─────────────────────────────────────────────────────────────── */
+.driverRow {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+  padding: 6px 10px;
+  border-bottom: 1px solid var(--border);
+  flex-shrink: 0;
+}
+
+.dBtn {
+  padding: 2px 6px;
+  border-radius: 4px;
+  background: var(--bg3);
+  border: 1px solid var(--border);
+  color: var(--text3);
+  font-size: 10px;
+  font-weight: 700;
+  font-family: var(--font-mono);
+  transition: all 0.1s;
+  cursor: pointer;
+}
+
+.dBtn:hover { color: var(--text); border-color: #444; }
+
+.dBtnSel {
+  background: rgba(225, 6, 0, 0.08);
+}
+
+/* ── Lap selector row ───────────────────────────────────────────────────────── */
+.lapRow {
+  display: flex;
+  gap: 12px;
+  padding: 5px 10px;
+  border-bottom: 1px solid var(--border);
+  flex-shrink: 0;
+  flex-wrap: wrap;
+}
+
+.lapPicker {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 10px;
+  font-family: var(--font-mono);
+}
+
+.lapSelect {
+  font-size: 10px;
+  padding: 2px 6px;
+  border-radius: 4px;
+  background: var(--bg3);
+  border: 1px solid var(--border);
+  color: var(--text);
+  cursor: pointer;
+  outline: none;
+}
+
+/* ── Lap time strip in header ───────────────────────────────────────────────── */
+.lapTimes {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--font-mono);
+  font-size: 11px;
+}
+
+.delta {
+  color: var(--text3);
+  font-size: 10px;
+}
+
+/* ── Stacked charts area ────────────────────────────────────────────────────── */
+.charts {
+  flex: 1;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+  padding: 4px 0 4px 0;
+  gap: 0;
+}
+
+/* ── Individual chart row ───────────────────────────────────────────────────── */
+.chartRow {
+  position: relative;
+  flex: 1;
+  min-height: 0;
+}
+
+/* First row (Speed) gets ~45% of the chart area */
+.chartRow:first-child { flex: 2.2; }
+/* Second row (Throttle/Brake) ~35% */
+.chartRow:nth-child(2) { flex: 1.8; }
+/* Third row (Gear) ~20% */
+.chartRow:last-child  { flex: 1; }
+
+/* Small label above each chart */
+.chartLabel {
+  position: absolute;
+  top: 3px;
+  left: 36px;
+  font-size: 9px;
+  color: var(--text3);
+  font-family: var(--font-mono);
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* ── Empty / loading state ──────────────────────────────────────────────────── */
+.empty {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  font-size: 12px;
+  color: var(--text3);
+  line-height: 1.6;
+  padding: 16px;
+}
+
+/* ── Mobile: keep charts usable at 400px panel height ──────────────────────── */
+@media (max-width: 768px) {
+  .dBtn { font-size: 9px; padding: 2px 5px; }
+  .chartLabel { font-size: 8px; }
+}

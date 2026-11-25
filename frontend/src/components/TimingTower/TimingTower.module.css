@@ -1,0 +1,198 @@
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  font-family: var(--font-mono);
+  font-size: 11px;
+}
+
+.table thead th {
+  padding: 4px 6px;
+  text-align: left;
+  color: var(--text3);
+  font-size: 9px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  border-bottom: 1px solid var(--border);
+  background: var(--bg3);
+  position: sticky;
+  top: 0;
+  z-index: 1;
+  white-space: nowrap;
+}
+
+.table tbody tr {
+  border-bottom: 1px solid rgba(255,255,255,0.04);
+  transition: background 0.1s;
+}
+
+.table tbody tr:hover { background: rgba(255,255,255,0.04); }
+
+.table td { padding: 3px 6px; white-space: nowrap; }
+
+.fastest { background: rgba(128, 0, 255, 0.08) !important; }
+
+/* ── DNF / PIT row states ── */
+.retired {
+  opacity: 0.45;
+}
+.retired td { color: var(--text3) !important; }
+
+.pitting {
+  background: rgba(255, 180, 0, 0.06) !important;
+}
+
+/* ── Position badges ── */
+.pos {
+  font-weight: 700;
+  font-size: 12px;
+  color: var(--text2);
+  width: 20px;
+}
+
+.dnfBadge {
+  display: inline-block;
+  padding: 1px 4px;
+  border-radius: 3px;
+  background: rgba(180, 0, 0, 0.35);
+  color: #ff6666;
+  font-size: 8px;
+  font-weight: 800;
+  letter-spacing: 0.06em;
+  font-family: var(--font-mono);
+}
+
+@keyframes pitPulse {
+  0%, 100% { opacity: 1; background: rgba(255,180,0,0.30); }
+  50%       { opacity: 0.7; background: rgba(255,180,0,0.15); }
+}
+
+.pitBadge {
+  display: inline-block;
+  padding: 1px 4px;
+  border-radius: 3px;
+  background: rgba(255,180,0,0.30);
+  color: #ffd700;
+  font-size: 8px;
+  font-weight: 800;
+  letter-spacing: 0.06em;
+  font-family: var(--font-mono);
+  animation: pitPulse 1s ease-in-out infinite;
+}
+
+/* ── Overtake arrows ── */
+.arrowCell {
+  width: 14px;
+  padding: 0 2px !important;
+  text-align: center;
+}
+
+@keyframes arrowFadeIn {
+  from { opacity: 0; transform: translateY(4px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.arrow {
+  display: inline-block;
+  font-size: 9px;
+  font-weight: 900;
+  animation: arrowFadeIn 0.25s ease-out;
+}
+
+.arrowUp   { color: #39b54a; }
+.arrowDown { color: #e10600; }
+
+.retiredText { color: var(--text3) !important; text-decoration: line-through; }
+
+.driver { display: flex; align-items: center; gap: 5px; }
+
+.teamBar {
+  width: 3px;
+  height: 16px;
+  border-radius: 2px;
+  flex-shrink: 0;
+}
+
+.abbr { font-weight: 700; font-size: 12px; color: var(--text); min-width: 28px; }
+
+.team { color: var(--text3); font-size: 9px; font-family: var(--font); }
+
+.gap { color: var(--text2); font-size: 10px; }
+
+.laptime { font-weight: 600; color: var(--text); font-size: 11px; }
+
+.purple { color: #c084fc !important; }
+
+.sector { color: var(--text3); font-size: 10px; }
+
+.tyre {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  font-size: 9px;
+  font-weight: 800;
+  font-family: var(--font);
+}
+
+.tyreCell { display: flex; align-items: center; gap: 4px; }
+
+.tyreAge { font-size: 10px; color: var(--text3); }
+
+/* ── Module-level panel hooks (needed for mobile overrides) ────────────────── */
+/* These classes are added alongside the global "panel" / "panel-body" classes  */
+/* so we can target them from this module's media query without :global hacks.  */
+.panel { height: 100%; }
+.body  { /* no override at base size */ }
+
+/* Column classes for selective hiding on mobile */
+.intervalCol { /* visible by default */ }
+.sectorCol   { /* visible by default */ }
+
+/* ── Mobile: auto-height panel so ALL drivers are visible without inner scroll  */
+@media (max-width: 768px) {
+  /* Panel grows to fit its content; the page scrolls, the panel does not */
+  .panel {
+    height: auto !important;
+  }
+
+  .body {
+    flex: none !important;
+    height: auto !important;
+    overflow-y: visible !important;
+    overflow-x: auto;          /* allow horizontal scroll only if really needed */
+  }
+
+  /* More compact rows to fit 20 drivers with less vertical space */
+  .table {
+    font-size: 10px;
+  }
+
+  .table thead th {
+    padding: 3px 4px;
+    font-size: 8px;
+  }
+
+  .table tbody td {
+    padding: 2px 4px;
+  }
+
+  /* Tyre badge slightly smaller */
+  .tyre {
+    width: 16px;
+    height: 16px;
+    font-size: 8px;
+  }
+
+  /* Hide team name — team colour bar still visible */
+  .team { display: none; }
+
+  /* Hide interval column — gap to leader is enough */
+  .intervalCol { display: none; }
+
+  /* Hide per-sector times — too detailed on a small screen */
+  .sectorCol,
+  .sector { display: none; }
+}

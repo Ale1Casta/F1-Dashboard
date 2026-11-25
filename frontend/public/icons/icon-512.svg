@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+  <rect width="512" height="512" rx="72" fill="#0a0a0a"/>
+  <rect width="512" height="512" rx="72" fill="url(#g)"/>
+  <defs>
+    <linearGradient id="g" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#1a0000"/>
+      <stop offset="100%" stop-color="#0a0a0a"/>
+    </linearGradient>
+  </defs>
+  <!-- Red accent bar top -->
+  <rect x="0" y="0" width="512" height="16" rx="8" fill="#e10600"/>
+  <!-- F -->
+  <rect x="72" y="136" width="28" height="240" fill="#ffffff"/>
+  <rect x="72" y="136" width="140" height="28" fill="#ffffff"/>
+  <rect x="72" y="242" width="116" height="28" fill="#e10600"/>
+  <!-- 1 -->
+  <rect x="258" y="136" width="28" height="240" fill="#ffffff"/>
+  <polygon points="232,184 258,136 258,184" fill="#ffffff"/>
+  <!-- Red speed lines bottom-right -->
+  <rect x="320" y="340" width="120" height="16" rx="8" fill="#e10600"/>
+  <rect x="348" y="366" width="92" height="10" rx="5" fill="#e10600" opacity="0.5"/>
+</svg>

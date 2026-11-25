@@ -1,0 +1,133 @@
+.item {
+  display: flex;
+  flex-direction: column;
+  padding: 7px 10px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+  gap: 0;
+  transition: background 0.1s;
+}
+
+.item:hover { background: rgba(255, 255, 255, 0.03); }
+
+.itemPlaying {
+  background: rgba(225, 6, 0, 0.05) !important;
+}
+
+/* Header row: bar | info | time | buttons */
+.row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.teamBar {
+  width: 3px;
+  height: 32px;
+  border-radius: 2px;
+  flex-shrink: 0;
+}
+
+.info {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+  flex: 1;
+  min-width: 0;
+}
+
+.abbr {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--text);
+}
+
+.team {
+  font-size: 9px;
+  color: var(--text3);
+  font-family: var(--font);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.time {
+  font-size: 10px;
+  color: var(--text3);
+  font-family: var(--font-mono);
+  flex-shrink: 0;
+}
+
+/* Action buttons */
+.actions {
+  display: flex;
+  gap: 4px;
+  flex-shrink: 0;
+}
+
+.btn {
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  background: var(--bg3);
+  border: 1px solid var(--border);
+  color: var(--text);
+  font-size: 11px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.12s;
+  flex-shrink: 0;
+}
+
+.btn:hover:not(:disabled) { background: var(--accent); border-color: var(--accent); }
+.btn:disabled { opacity: 0.5; cursor: default; }
+
+.playing {
+  background: var(--accent) !important;
+  border-color: var(--accent) !important;
+  animation: pulse 1.2s ease-in-out infinite;
+}
+
+/* Transcript button */
+.txBtn {
+  font-family: var(--font-mono);
+  font-weight: 700;
+  font-size: 11px;
+  background: var(--bg3);
+}
+
+.txActive {
+  background: rgba(150, 0, 255, 0.2) !important;
+  border-color: rgba(150, 0, 255, 0.5) !important;
+  color: #c084fc !important;
+}
+
+.txLoading {
+  animation: spin 1s linear infinite;
+}
+
+/* Transcript text block */
+.transcript {
+  margin-top: 6px;
+  padding: 6px 8px;
+  background: rgba(150, 0, 255, 0.07);
+  border-left: 2px solid rgba(150, 0, 255, 0.4);
+  border-radius: 0 4px 4px 0;
+  font-size: 11px;
+  color: var(--text2);
+  font-style: italic;
+  line-height: 1.5;
+  word-break: break-word;
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.65; }
+}
+
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
+}

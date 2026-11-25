@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="it">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <title>F1 Dashboard</title>
+
+    <!-- PWA manifest -->
+    <link rel="manifest" href="/manifest.json" />
+
+    <!-- Theme colour (Android Chrome toolbar + iOS status bar) -->
+    <meta name="theme-color" content="#e10600" />
+
+    <!-- iOS PWA ("Add to Home Screen" → fullscreen, no Safari UI) -->
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta name="apple-mobile-web-app-title" content="F1 Live" />
+    <link rel="apple-touch-icon" href="/icons/icon-192.svg" />
+
+    <!-- Android / general -->
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="application-name" content="F1 Dashboard" />
+    <meta name="description" content="Formula 1 live timing, track map, team radio e dati di gara" />
+
+    <!-- Prevent phone-number auto-detection -->
+    <meta name="format-detection" content="telephone=no" />
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;600&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <div id="root">
+      <!-- Visible until React mounts and overwrites #root -->
+      <div id="splash" style="display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:100vh;background:#0d0d0d;color:#e10600;font-family:monospace;gap:16px;padding:24px;text-align:center;">
+        <div style="font-size:36px;font-weight:900;letter-spacing:-0.02em;">F1</div>
+        <div style="font-size:13px;color:#888;">Caricamento...</div>
+        <div id="js-error" style="display:none;color:#ffd700;font-size:11px;max-width:320px;word-break:break-all;border:1px solid #ffd700;padding:12px;border-radius:6px;margin-top:8px;"></div>
+      </div>
+    </div>
+    <script>
+      // Catch JS errors BEFORE React mounts and show them in the splash
+      window.addEventListener('error', function(e) {
+        var d = document.getElementById('js-error');
+        if (d) { d.style.display = 'block'; d.textContent = 'JS Error: ' + e.message + '\n' + (e.filename || '') + ':' + e.lineno; }
+      });
+      window.addEventListener('unhandledrejection', function(e) {
+        var d = document.getElementById('js-error');
+        if (d) { d.style.display = 'block'; d.textContent = 'Promise Error: ' + String(e.reason); }
+      });
+      // Mark that inline scripts ARE executing (proves CSP is not blocking them)
+      document.getElementById('js-error').setAttribute('data-inline', '1');
+    </script>
+    <!-- nomodule: runs ONLY on browsers that do NOT support ES modules -->
+    <script nomodule>
+      var d = document.getElementById('js-error');
+      if (d) { d.style.display = 'block'; d.textContent = 'NO ES MODULE SUPPORT in this browser'; }
+    </script>
+    <script type="module" src="/src/main.tsx"></script>
+    <script>
+      // Register service worker for PWA installability
+      if ("serviceWorker" in navigator) {
+        window.addEventListener("load", () => {
+          navigator.serviceWorker
+            .register("/sw.js")
+            .catch((err) => console.warn("SW registration failed:", err));
+        });
+      }
+    </script>
+  </body>
+</html>

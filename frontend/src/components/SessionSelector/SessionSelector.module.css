@@ -1,0 +1,85 @@
+.bar {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 0 16px;
+  height: 48px;
+  background: var(--bg2);
+  border-bottom: 1px solid var(--border);
+  flex-shrink: 0;
+}
+
+@media (max-width: 768px) {
+  .bar {
+    height: auto;
+    flex-wrap: wrap;
+    padding: 10px 12px;
+    gap: 8px;
+    row-gap: 6px;
+  }
+
+  .controls {
+    flex-wrap: wrap;
+    gap: 6px;
+  }
+}
+
+.logo { display: flex; align-items: baseline; gap: 6px; flex-shrink: 0; }
+
+.f1 {
+  font-size: 20px;
+  font-weight: 800;
+  color: var(--accent);
+  letter-spacing: -0.02em;
+}
+
+.dash {
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--text2);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.controls {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex: 1;
+}
+
+.liveBtn {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 5px 10px;
+  border-radius: 20px;
+  background: var(--bg3);
+  border: 1px solid var(--border);
+  color: var(--text2);
+  font-weight: 600;
+  font-size: 11px;
+  letter-spacing: 0.06em;
+  transition: all 0.15s;
+}
+
+.liveActive {
+  background: rgba(225, 6, 0, 0.15);
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
+.dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.dotGreen { background: var(--green); box-shadow: 0 0 6px var(--green); animation: pulse 1.5s infinite; }
+.dotRed { background: #555; }
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.4; }
+}

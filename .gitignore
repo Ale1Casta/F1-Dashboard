@@ -1,0 +1,22 @@
+# Secrets
+.env
+
+# Python
+__pycache__/
+*.pyc
+.venv/
+venv/
+
+# Caches (FastF1 data, Whisper transcripts)
+cache/
+backend/transcript_cache/
+
+# Node / build
+node_modules/
+frontend/dist/
+*.tsbuildinfo
+
+# Editor / local tool settings
+.vscode/
+.idea/
+.claude/settings.local.json
